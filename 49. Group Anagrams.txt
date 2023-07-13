@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> vec ;
+        map<int , vector<string>> mapi ;
+        for(int i =0 ; i<strs.size() ; i++){
+            int temp = 0 ;
+            for (int j =0 ; j < strs[i].length() ; j++) {
+                int k = strs[i][j] - 95 ;
+                temp = temp + (k*7)*(k/2 + 20003)*(log(k)) ;
+            }
+            if (mapi.find(temp) != mapi.end()){
+                vector <string> vec = mapi.at(temp);
+                vec.push_back(strs[i]);
+                mapi[temp] = vec ;
+            }
+            else {
+                mapi[temp] = {strs[i]} ;
+            }
+        }
+        for (auto itr = mapi.begin(); itr != mapi.end(); ++itr) {
+            vec.push_back(itr->second) ;
+        }
+        return(vec) ;
+    }
+};

@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        vector<int> pos(nums.size()) ;
+        if(nums.size()==1) {
+            return(0) ;
+        }
+        for (int i = 0 ; i<nums.size() ; i++) {
+           pos[i] = i + nums[i] ;
+           cout << pos[i] << " " ;
+        }
+        cout << endl ;
+        int start = pos[0] ;
+        int j = 0 ; 
+        int jump = 1 ;
+        if(pos[0]>=nums.size()-1){
+            return(1) ;
+        }
+        while(j<pos.size()-1) {
+            int max = -1 ;
+            while (j<=start){
+                if (pos[j]>max){
+                    max = pos[j] ;
+                }
+                cout << max  << " ";
+                j++ ;
+            }
+            start = max ;
+            jump ++ ;
+            if (max>=nums.size()-1){
+                return(jump) ;
+            }
+            
+        }
+        return(-1) ;
+    }
+};
